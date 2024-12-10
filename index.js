@@ -244,59 +244,62 @@ JSON of sorted hotels low-to-high or high-to-low.
 //   res.json(hotels);
 // });
 
+let result ;
+
 app.get('/hotels/sort/pricing', (req, res) => {
   let pricing = req.query.pricing;
 
   if (pricing === 'high-to-low') {
-    hotels.sort((a, b) => b.price - a.price); // Sort from high to low
+    result =hotels.sort((a, b) => b.price - a.price); // Sort from high to low
   } else if (pricing === 'low-to-high') {
-    hotels.sort((a, b) => a.price - b.price); // Sort from low to high
+    result =hotels.sort((a, b) => a.price - b.price); // Sort from low to high
   }
 
-  res.json(hotels);
+ 
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/sort/rating', (req, res) => {
   let pricing = req.query.rating;
 
   if (pricing === 'high-to-low') {
-    hotels.sort((a, b) => b.rating - a.rating); // Sort from high to low
+    result =hotels.sort((a, b) => b.rating - a.rating); // Sort from high to low
   } else if (pricing === 'low-to-high') {
-    hotels.sort((a, b) => a.rating - b.rating); // Sort from low to high
+    result = hotels.sort((a, b) => a.rating - b.rating); // Sort from low to high
   }
 
-  res.json(hotels);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/sort/reviews', (req, res) => {
   let reviews = req.query.reviews;
 
   if (reviews === 'most-to-least') {
-    hotels.sort((a, b) => b.reviews - a.reviews); // Sort from high to low
+    result =hotels.sort((a, b) => b.reviews - a.reviews); // Sort from high to low
   } else if (reviews === 'least-to-most') {
-    hotels.sort((a, b) => a.reviews - b.reviews); // Sort from low to high
+    result =hotels.sort((a, b) => a.reviews - b.reviews); // Sort from low to high
   }
 
-  res.json(hotels);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/filter/amenity', (req, res) => {
   let amenity = req.query.amenity;
-  res.json(hotels.filter((e) => e.amenity == amenity));
+  res.json({hotels:hotels.filter((e) => e.amenity == amenity)});
 });
 
 app.get('/hotels/filter/country', (req, res) => {
   let country = req.query.country;
-  res.json(hotels.filter((e) => e.country == country));
+  res.json({hotels:hotels.filter((e) => e.country == country)});
 });
 
 app.get('/hotels/filter/category', (req, res) => {
   let category = req.query.category;
-  res.json(hotels.filter((e) => e.category == category));
+  res.json({hotels:hotels.filter((e) => e.category == category)});
 });
 
 app.get('/hotels', (req, res) => {
-  res.json(hotels);
+  res.json({hotels:hotels});
 });
 
 app.get('/', (req, res) => {
